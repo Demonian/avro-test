@@ -44,7 +44,7 @@ public class AvroTestApplication {
 
 		@PostMapping(path = "/hello", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 		public String hello(@RequestBody Hello hello) {
-			return "valid" + hello.getName();
+			return "valid json: " + hello.toString();
 		}
 	}
 }

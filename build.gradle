@@ -35,7 +35,7 @@ repositories {
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.apache.avro:avro:1.8.2')
-	compile('com.fasterxml.jackson.dataformat:jackson-dataformat-avro:2.9.6')
+	compile('tech.allegro.schema.json2avro:converter:0.2.6')
 
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }

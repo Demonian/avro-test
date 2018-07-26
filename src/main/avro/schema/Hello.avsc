@@ -4,7 +4,7 @@
     "type":"record",
     "fields":[
         {"name":"id", "type":"long", "doc":"id of the object"},
-        {"name":"name", "type":"string", "doc":"optional name field with default value"},
-        {"name":"surname", "type":["null","string"], "doc":"optional name field with default value"}
+        {"name":"name", "type":"string", "default":"default", "doc":"optional name field with default value"},
+        {"name":"surname", "type":["null", "string"], "default":null, "doc":"optional name field with default value"}
     ]
 }
