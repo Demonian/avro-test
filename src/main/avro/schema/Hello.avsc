@@ -1,0 +1,10 @@
+{
+    "name":"Hello",
+    "namespace":"ihnatiev.dmytro.avrotest.model.avro",
+    "type":"record",
+    "fields":[
+        {"name":"id", "type":"long", "doc":"id of the object"},
+        {"name":"name", "type":"string", "doc":"optional name field with default value"},
+        {"name":"surname", "type":["null","string"], "doc":"optional name field with default value"}
+    ]
+}

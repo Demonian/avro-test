@@ -1,0 +1,60 @@
+buildscript {
+	ext {
+		springBootVersion = '2.0.3.RELEASE'
+		avroPluginVersion = '0.14.2'
+	}
+	repositories {
+		mavenLocal()
+		mavenCentral()
+		jcenter()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath "com.commercehub.gradle.plugin:gradle-avro-plugin:${avroPluginVersion}"
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: "com.commercehub.gradle.plugin.avro-base"
+
+group = 'ihnatiev.dmytro'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenLocal()
+	mavenCentral()
+	jcenter()
+}
+
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile('org.apache.avro:avro:1.8.2')
+	compile('com.fasterxml.jackson.dataformat:jackson-dataformat-avro:2.9.6')
+
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
+}
+
+avro {
+	fieldVisibility = "PRIVATE"
+	outputCharacterEncoding = "UTF-8"
+	validateDefaults = true
+	stringType = "String"
+}
+
+task generateAvro(type: com.commercehub.gradle.plugin.avro.GenerateAvroJavaTask) {
+	source("src/main/avro")
+	outputDir = file("src/main/java")
+}
+
+compileJava.source(generateAvro.outputs)
+
