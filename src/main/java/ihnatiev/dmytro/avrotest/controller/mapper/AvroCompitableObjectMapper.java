@@ -41,7 +41,7 @@ public class AvroCompitableObjectMapper extends ObjectMapper {
         try {
             Method getClassSchema = valueType.getRawClass().getMethod("getClassSchema");
             Schema schema = (Schema) getClassSchema.invoke(null);
-            JsonAvroConverter converter = new JsonAvroConverter();
+            JsonAvroConverter converter = new JsonAvroConverterV2();
             // conversion to binary Avro
             GenericData.Record record = converter.convertToGenericDataRecord(inputMessage.getBytes(), schema);
             return record.toString();
